@@ -1,0 +1,24 @@
+{% extends 'calculator/base.html' %}
+{% load static %}
+{% block content %}
+
+<br>
+<div class="col">
+	<div class="card card-body">
+
+		<form action="" method="POST">
+			{% csrf_token %}
+			{{ form.management_form }}
+			{% for field in form %}
+				{{field}}
+				<hr>
+			{% endfor %}
+			
+			<input class="btn btn-success" type="submit" name="Submit" value="Append" >
+		</form>
+
+	</div>
+</div>
+
+
+{% endblock %}

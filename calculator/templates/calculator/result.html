@@ -1,0 +1,30 @@
+{% extends 'calculator/base.html' %}
+{% block content %}
+{% load static %}
+{% include 'calculator/navigation.html' %}
+
+<br>
+
+<h2 style="text-align: center;">Your flat against flats of the same category:</h2>
+
+<br>
+
+{% for message in messages %}
+
+    <h4 style="text-align: center; color: green;">{{message}}</h4>
+
+{% endfor %}
+
+<h4 style="text-align: center; color: black;">Please update Appliance Details from Dashboard!</h4>
+
+<br>
+
+<div class="text-center">
+    <a class="btn btn-success  btn-lg" href="{% url 'user' %}">Return to Dashboard</a>
+    <br>
+    <br>
+    <a class="btn btn-info  btn-lg" href="{% url 'flats' %}">See All Flats</a>
+</div>
+
+
+{% endblock content %}

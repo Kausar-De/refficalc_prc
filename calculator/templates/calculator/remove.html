@@ -1,0 +1,25 @@
+{% extends 'calculator/base.html' %}
+{% load static %}
+{% block content %}
+{% load static %}
+{% include 'calculator/navigation.html' %}
+
+<br>
+<div class="col">
+	<div class="col-md-6">
+        <div class="card card-body">
+
+            <p>Are you sure you want to remove "{{flat}}" from the database?</p>
+
+            <form method="POST" action="{% url 'removeflat' flat.id %}">
+                {% csrf_token %}
+            
+                <a class="btn btn-sm btn-warning" href="{% url 'database' %}">Cancel</a>
+                <input class="btn btn-sm btn-danger" type="submit" name="Confirm">
+            </form>
+
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

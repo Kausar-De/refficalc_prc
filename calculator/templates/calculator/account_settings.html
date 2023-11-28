@@ -1,0 +1,37 @@
+{% extends 'calculator/base.html' %}
+{% block content %}
+{% load static %}
+
+<br>
+<div class="row" style="margin: auto;">
+	<div class="col-md-3">
+		<div class="card card-body">
+			<h3 style="text-align: center">Account Settings</h3>
+			<hr>
+			{% if request.user.buildingdata.profilepic.url != None %}
+
+				<img class="profile-pic" src="{{request.user.buildingdata.profilepic.url}}" >
+
+			{% endif %}
+			<hr>
+			<a class="btn btn-info  btn-sm btn-block" href="{% url 'reset_password' %}">Reset Password</a>
+			<a class="btn btn-warning btn-sm btn-block" href="{% url 'user' %}"> &#8592; Back to Dashboard</a>		
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div class="card card-body">
+			
+			<form method="POST" action="" enctype="multipart/form-data">
+				{% csrf_token %}
+				{{form1.as_p}}
+				{{form2.as_p}}
+				
+			<input class="btn btn-primary" type="submit" name="Update Information">
+			</form>
+		</div>
+	</div>
+</div>
+
+
+
+{% endblock %}

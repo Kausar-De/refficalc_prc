@@ -1,0 +1,77 @@
+<br>
+
+<div class="row">
+	{% if request.user.is_staff %}
+
+	<div class="col">
+		<div class="col-md">
+
+			<div class="card text-center text-white  mb-3" id="total-buildings">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Total Buildings</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{usercount}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+	
+	{% endif %}
+
+	{% if request.user.is_staff == False %}
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card card-body">
+				<h5>Building: {{request.user.first_name}}</h5>
+				<hr>
+				{% if request.user.buildingdata.profilepic.url != None %}
+
+					<img class="profile-pic" size="50%" src="{{request.user.buildingdata.profilepic.url}}" >
+
+				{% endif %}
+			</div>
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card card-body">
+				<h5>Actions: </h5>
+				<hr>
+				<a class="btn btn-info  btn-sm btn-block" href="{% url 'account' %}">Update Building</a>
+				<a class="btn btn-success  btn-sm btn-block" href="{% url 'calculate' %}">Register Flat</a>	
+				<a class="btn btn-info  btn-sm btn-block" href="{% url 'smartmeter' %}">Smart Meter Reading</a>
+			</div>
+		</div>
+	</div>
+			
+	{% endif %}
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="flats-listed">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Listed Flats</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{flatcount}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="mean-energy">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Mean Energy (Units)</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{mean}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+</div>

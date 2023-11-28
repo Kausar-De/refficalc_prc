@@ -1,0 +1,41 @@
+{% extends 'calculator/base.html' %}
+{% block content %}
+{% load static %}
+{% include 'calculator/navigation.html' %}
+
+<br>
+
+<div class="col">
+	<div class="card card-body">
+		<h5>Flat List</h5>
+	</div>
+	<div class="card card-body">
+		<table class="table">
+			<tr>
+				<th>Name</th>
+				<th>Building</th>
+				<th>Area (Sq. Ft.)</th>
+				<th>Category (BHK)</th>
+				<th>Occupants</th>
+				<th>Units</th>
+				<th>No. of Appliances</th>
+				<th>Appliances</th>
+			</tr>
+
+			{% for flat in flats %}
+				<tr>
+					<td>{{flat.name}}</td>
+					<td>{{flat.building.first_name}}</td>
+					<td>{{flat.area}}</td>
+					<td>{{flat.category}}</td>
+					<td>{{flat.occupants}}</td>
+					<td>{{flat.units}}</td>
+					<td>{{flat.appliances}}</td>
+					<td>{% for appliance in flat.appliancedata_set.all %}{% if forloop.first %}{% else %}, {% endif %}{{appliance.modelname}}{% endfor %}</td>
+			{% endfor %}
+			
+		</table>
+	</div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,29 @@
+{% extends 'calculator/base.html' %}
+{% block content %}
+{% load static %}
+{% include 'calculator/navigation.html' %}
+
+
+<br>
+<div class="col">
+    <div class="card card-body">
+        <h2 style="text-align: center;">IoT Reading</h2>
+    </div>
+</div>
+<br>
+<div class="col">
+    <div class="row">
+        <div class="col">
+            <div class="card card-body">
+                <iframe width="450" height="260" style="border: 1px solid #cccccc; display:block; margin: auto;" src="https://thingspeak.com/channels/2023658/widgets/597492"></iframe>
+            </div>
+        </div>
+        <div class="col">
+            <div class="card card-body">
+                <iframe width="450" height="260" style="border: 1px solid #cccccc; display:block; margin: auto;" src="https://thingspeak.com/channels/2023658/widgets/597493"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

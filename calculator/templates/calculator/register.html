@@ -1,0 +1,24 @@
+{% extends 'calculator/base.html' %}
+{% load static %}
+{% block content %}
+
+<br>
+<div class="col">
+    <div class="card card-body">
+        <h2>Register Building</h2>
+        <br>
+        <form method="POST">
+            <table class="table table-sm">
+                {% csrf_token %}
+                {{form.as_table}}
+
+                <input style="position: absolute; bottom: 10px;" class="btn btn-success" type="submit" name="Create Building" value="Register Building">
+            </table>
+        </form>
+    </div>
+</div>
+
+<br>
+<h5 style="text-align: center;">Already have an account? <a href="{% url 'login' %}">Login</a></h5>
+
+{% endblock content %}

@@ -1,0 +1,22 @@
+{% extends 'calculator/base.html' %}
+{% block content %}
+{% load static %}
+{% include 'calculator/navigation.html' %}
+
+<br>
+<div class="col">
+    <div class="card card-body">
+        <h2>Register/Update Flat</h2>
+        <br>
+        <form method="POST">
+            <table class="table table-sm">
+                {% csrf_token %}
+                {{form.as_table}}
+                
+                <input style="position: absolute; bottom: 10px;" class="btn btn-success" type="submit" name="Submit" value="Append" >
+            </table>
+        </form>
+    </div>
+</div>
+
+{% endblock content %}

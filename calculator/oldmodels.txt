@@ -1,0 +1,37 @@
+class Appliance(models.Model):
+    NAME = (
+        ('Air Conditioner', 'Air Conditioner'),
+        ('Computer', 'Computer'),
+        ('LED', 'LED'),
+        ('CFL', 'CFL'),
+        ('Microwave', 'Microwave'),
+        ('Washing Machine', 'Washing Machine'),
+        ('Ceiling Fan', 'Ceiling Fan'),
+        ('Refrigerator', 'Refrigerator'),
+        ('Air Fryer', 'Air Fryer'),
+        ('Chimney', 'Chimney'),
+        ('Geyser', 'Geyser'),
+        ('OTG', 'OTG'),
+        ('Oven', 'Oven'),
+        ('Electric Stove', 'Electric Stove'),
+        ('BEV Charger', 'BEV Charger'),
+        ('Television', 'Television'),
+        ('Room Heater', 'Room Heater'),
+        ('Electric Kettle', 'Electric Kettle'),
+    )
+
+    CATEGORY = (
+        ('Thermal Comfort', 'Thermal Comfort'),
+        ('Technology', 'Technology'),
+        ('Lighting', 'Lighting'),
+        ('Kitchen', 'Kitchen'),
+        ('Utility', 'Utility'),
+    )
+
+    name = models.CharField(max_length = 200, null = True, choices = NAME)
+    category = models.CharField(max_length = 200, null = True, choices = CATEGORY)
+    description = models.CharField(max_length = 200, null = True)
+    created_date = models.DateTimeField(auto_now_add = True, null = True)
+
+    def __str__(self):
+        return self.name

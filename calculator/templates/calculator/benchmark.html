@@ -1,0 +1,68 @@
+{% extends 'calculator/base.html' %}
+{% block content %}
+{% include 'calculator/navigation.html' %}
+{% include 'calculator/status.html' %}
+
+<script>
+$(document).ready(function(){
+
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+            datasets: [{
+                label: 'Units Consumed/Month Last Year',
+                data: [{% for i in lastyrunits%}'{{i}}', {% endfor %}],
+                fill: false,
+                borderColor: 'rgb(75, 192, 292)',
+                backgroundColor: 'rgb(75, 192, 292)',
+            },
+            {
+                label: 'Units Consumed/Month 2 Years Prior',
+                data: [{% for i in twoyrbfrunits%}'{{i}}', {% endfor %}],
+                fill: false,
+                borderColor: '#7CD1C0',
+                backgroundColor: '#7CD1C0',
+            },
+            {
+                label: 'Units Consumed/Month 3 Years Prior',
+                data: [{% for i in threeyrbfrunits%}'{{i}}', {% endfor %}],
+                fill: false,
+                borderColor: 'rgb(92, 184, 92)',
+                backgroundColor: 'rgb(92, 184, 92)',
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+});
+</script>
+
+<br>
+<div class="col">
+    <div class="card card-body">
+        <h5>Benchmark Metrics:</h5>
+        <hr>
+        <h5>Energy Performance Index (EPI): {{flatEPI}} kWh/Sq.m/Yr <mark style="background-color: #5bc0de ;">({{percEPI}}% efficiency against flats of same category)</mark></h5>
+        <h5>Per Occupant Consumption (POC): {{flatPOC}} Units/Occupant <mark style="background-color: #5bc0de ;">({{percPOC}}% efficiency against flats of same category)</mark></h5>
+    </div>
+</div>
+
+<br>
+<div class="col">
+    <div class="card card-body">
+        <h5>Unit Consumption Trend (By Year):</h5>
+        <hr>    
+        <canvas id="myChart" width="400" height="100"></canvas>
+    </div>
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,60 @@
+{% extends 'calculator/base.html' %}
+{% block content %}
+{% include 'calculator/navigation.html' %}
+{% include 'calculator/status.html' %}
+
+<br>
+<div class="col">
+	<div class="card card-body">
+		<table class="table table-sm">
+			<tr>
+				<th>Flat</th>
+				<th>Area (Sq. Ft.)</th>
+				<th>Category (BHK)</th>
+				<th>Rooms</th>
+				<th>Occupants</th>
+				<th>No. of Appliances</th>
+				<th>Appliances</th>
+				<th>Units</th>
+				<th>Bill</th>
+				<th>Date Appended</th>
+				<th>Benchmark</th>
+				<th>Update</th>
+				<th>Update Appliances</th>
+				<th>Remove</th>
+			</tr>
+
+			{% for flat in flats %}
+
+			<tr>
+				<td>{{flat.name}}</td>
+				<td>{{flat.area}}</td>
+				<td>{{flat.category}}</td>
+				<td>{{flat.rooms}}</td>
+				<td>{{flat.occupants}}</td>
+				<td>{{flat.appliances}}</td>
+				<td>{% for appliance in flat.appliancedata_set.all %}{% if forloop.first %}{% else %}, {% endif %}{{appliance.modelname}}{% endfor %}</td>
+				<td>{{flat.units}}</td>
+				<td>{{flat.billamt}}</td>
+				<td>{{flat.append_date}}</td>
+				<td><a class="btn btn-sm btn-info" href="{% url 'benchmark' flat.id %}">Benchmark</a></td>
+				<td><a class="btn btn-sm btn-info" href="{% url 'updateflat' flat.id %}">Update</a></td>
+				<td><a class="btn btn-sm btn-info" href="{% url 'updateappliance' flat.id %}">Update Appliances</a></td>
+				<td><a class="btn btn-sm btn-danger" href="{% url 'removeflat' flat.id %}">Remove</a></td>
+			</tr>
+
+			{% endfor %}
+
+		</table>
+	</div>
+</div>
+
+{% for message in messages %}
+
+	<br>
+    <h6 style="text-align: center; color: green;">{{message}}</h6>
+
+{% endfor %}
+
+
+{% endblock content %}

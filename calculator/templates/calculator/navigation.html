@@ -1,0 +1,40 @@
+{% load static %}
+
+<style>
+  .hello-msg{
+    font-size: 18px;
+    color: #ffffff;
+    margin-right: 20px;
+  }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark" style= "background: rgb(6,38,81); background: linear-gradient(119deg, rgba(6,38,81,1) 17%, rgba(84,130,53,1) 100%, rgba(255,255,255,1) 100%, rgba(255,255,255,1) 100%);" >
+    <img src="{% static '/images/iemlogo.webp' %} " width="187px" height="108px" style="margin-right: 15px;">  
+    <a class="navbar-brand" href="{% url 'home' %}">Residential Energy Evaluator</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          {% if request.user.is_staff %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'database' %}">Database <span class="sr-only">(current)</span></a>
+          </li>
+          {% endif %}
+          {% if request.user.is_staff == False %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'user' %}">Dashboard <span class="sr-only">(current)</span></a>
+          </li>
+          {% endif %}
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'calculate' %}">Calculate <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'flats' %}">Flat List</a>
+          </li>
+        </ul>
+    </div>
+
+    <span class="hello-msg">Hello, {{request.user.first_name}}</span>
+    <span><a class="hello-msg" style="color: orange;" href="{% url 'logout' %}">Logout</a></span>
+</nav>
